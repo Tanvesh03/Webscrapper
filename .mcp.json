@@ -1,0 +1,70 @@
+{
+  "mcpServers": {
+    "booking-scraper": {
+      "command": "python",
+      "args": [
+        "scraper.py"
+      ],
+      "description": "Booking.com hotel data scraper with MCP interface",
+      "tools": [
+        {
+          "name": "search_hotels",
+          "description": "Search and scrape hotel listings from Booking.com",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "destination": {
+                "type": "string",
+                "description": "City or region to search"
+              },
+              "check_in": {
+                "type": "string",
+                "description": "Check-in date YYYY-MM-DD"
+              },
+              "check_out": {
+                "type": "string",
+                "description": "Check-out date YYYY-MM-DD"
+              },
+              "adults": {
+                "type": "integer",
+                "default": 2,
+                "description": "Number of adults"
+              },
+              "rooms": {
+                "type": "integer",
+                "default": 1,
+                "description": "Number of rooms"
+              },
+              "pages": {
+                "type": "integer",
+                "default": 2,
+                "description": "Pages to scrape"
+              }
+            },
+            "required": [
+              "destination",
+              "check_in",
+              "check_out"
+            ]
+          }
+        },
+        {
+          "name": "get_hotel_info",
+          "description": "Fetch detailed info for a specific hotel by URL",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "Booking.com hotel page URL"
+              }
+            },
+            "required": [
+              "url"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
